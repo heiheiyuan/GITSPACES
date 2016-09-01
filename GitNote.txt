@@ -12,3 +12,12 @@
 	2.运行git diff命令查看具体内容不同的地方
 		git diff GitNote.txt
 	3.当确认不同之处没问题之后继续使用add commit命令提交文件
+三.版本回退
+	1.使用git log查看版本记录
+		git log
+		也可使用git log --pretty=oneling查看精简版日志
+	2.使用git reset --hard HEAD^回退到上一版本,HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，
+	当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+		git reset --hard HEAD^
+	3.回到上一版本之后在想回到最新的版本需要在命令行窗口没有关闭的前提下,在之前的记录中找到需要的版本的commit id
+		git reset --hard 3628164(版本号)
