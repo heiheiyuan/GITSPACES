@@ -92,3 +92,14 @@
 		7.此时进行合并会有冲突发生
 			git merge feature1
 		8.Git会说明GitNote.txt文件存在冲突，必须手动解决冲突后再提交,git status也可以告诉我们冲突的文件,我们可以直接查看GitNote.txt的内容
+	三.分支管理策略
+		1.合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+		  如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息
+		2.创建并切换分支dev
+			git checkout -b dev
+		3.修改文件内容并提交
+		4.切回master
+		5.合并dev分支,并使用--on--ff参数,表示禁用fast forward
+			git merge --no-ff -m "merge with no-ff" dev
+			本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去
+		6.合并后使用git log查看分支历史
