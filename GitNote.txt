@@ -67,4 +67,10 @@
 		1.创建一个新的远程库,gitSkills
 		2.git clone git@github.com:heiheiyuan/gitSkills.git从远程仓库clone到本地
 (三).分支管理
-	一.
+	一.创建与合并分支
+		1.创建dev分支，然后切换到dev分支
+			git checkout -b dev(git checkout命令加上-b参数表示创建并切换，相当于以下两条命令:git branch dev    git checkout dev)
+		2.git branch命令查看当前分支
+			git branch
+		3.完成任务后提交代码,并将分支切回到master
+			git checkout master
