@@ -24,3 +24,7 @@
 	4.使用cat GitNote.txt可查看当前文档内容,不支持中文
 	5.当命令窗口被关闭后,可以使用git reflog查看每一次的命令id,就可以回到需要的版本
 		git reflog
+四.管理修改
+	1.实验操作
+		修改-->add-->修改-->commit,由此可知只有第一次修改的内容被添加到了暂存区
+	2.使用git diff HEAD -- GitNote.txt查看工作去和版本库的区别
