@@ -28,3 +28,5 @@
 	1.实验操作
 		修改-->add-->修改-->commit,由此可知只有第一次修改的内容被添加到了暂存区
 	2.使用git diff HEAD -- GitNote.txt查看工作去和版本库的区别
+		git diff HEAD -- readme.txt
+	3.可以看出第二次修改的内容没有提交到存储区,需要再次add commit操作
