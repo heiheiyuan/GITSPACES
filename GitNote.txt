@@ -74,3 +74,9 @@
 			git branch
 		3.完成任务后提交代码,并将分支切回到master
 			git checkout master
+		4.将dev分支的工作成果合并到master分支上
+			git merge dev		//git merge命令用于合并指定分支到当前分支
+		5.合并成功后删除dev分支
+			git branch -d dev
+		6.查看分支,发现只有一个master
+			git branch
