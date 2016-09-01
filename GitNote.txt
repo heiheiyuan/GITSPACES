@@ -48,4 +48,18 @@
 			ssh-keygen -t rsa -C "youremail@example.com"
 		2.登陆GitHub，打开“Account settings”，“SSH Keys”页面,点击Add SSH Key,将生成的id_rsa.pub添加
 	二.添加远程仓库
-		
+		1.Create new repository,在Repository name填入自己仓库的名字,创建即可(My Name:GIESPACES)
+		2.目前在GitHub上的这个GIESPACES仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，
+		然后，把本地仓库的内容推送到GitHub仓库
+			git remote add origin git@github.com:michaelliao/learngit.git			//p.s:github.com后面是:,不是/,其中origin是远程库的名字,可以自定义
+		3.将本地库的所有内容推送到远程库上
+			git push -u origin master
+		4.当你第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告：
+			The authenticity of host 'github.com (xx.xx.xx.xx)' can't be established.
+			RSA key fingerprint is xx.xx.xx.xx.xx.
+			Are you sure you want to continue connecting (yes/no)?
+			输入yes,回车就行,这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，
+			需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器
+		由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
+		还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令:git push origin master
+		如果第一次执行git remote add origin操作出现偏差时需要重新添加一次,可以执行git remote remove origin(远程仓库的name),然后重新添加即可
