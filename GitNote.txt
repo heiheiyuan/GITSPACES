@@ -218,4 +218,70 @@
 			如果合并有冲突，则解决冲突，并在本地提交；
 			没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
 			如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令
-				git branch --set-upstream branch-name origin/branch-name。
+				git branch --set-upstream branch-name origin/branch-name
+(四).标签管理
+		一.创建标签
+			1.在Git中打标签非常简单，首先，切换到需要打标签的分支上：
+				$ git branch
+				* dev
+				  master
+				$ git checkout master
+			2.然后，敲命令git tag <name>就可以打一个新标签：
+				$ git tag v1.0
+				3.可以用命令git tag查看所有标签：
+				$ git tag
+			3.默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？
+			方法是找到历史提交的commit id，然后打上就可以了：
+				$ git log --pretty=oneline --abbrev-commit
+				$ git tag v0.9 6224937
+			4.再用命令git tag查看标签：
+				$ git tag
+				v0.9
+				v1.0
+			5.标签不是按时间顺序列出，而是按字母排序的。可以用git show <tagname>查看标签信息：
+				$ git show v0.9
+				commit 622493706ab447b6bb37e4e2a2f276a20fed2ab4
+				Author: Michael Liao <askxuefeng@gmail.com>
+				Date:   Thu Aug 22 11:22:08 2013 +0800
+
+					add merge
+				...
+			6.可以看到，v0.9确实打在add merge这次提交上。
+			还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+				$ git tag -a v0.1 -m "version 0.1 released" 3628164
+			7.还可以通过-s用私钥签名一个标签：
+				$ git tag -s v0.2 -m "signed version 0.2 released" fec145a
+			8.签名采用PGP签名，因此，必须首先安装gpg（GnuPG），如果没有找到gpg，或者没有gpg密钥对，就会报错：
+				gpg: signing failed: secret key not available
+				error: gpg failed to sign the data
+				error: unable to sign the tag
+			9.如果报错，请参考GnuPG帮助文档配置Key。
+			用命令git show <tagname>可以看到PGP签名信息：
+				$ git show v0.2
+				tag v0.2
+				Tagger: Michael Liao <askxuefeng@gmail.com>
+				Date:   Mon Aug 26 07:28:33 2013 +0800
+
+				signed version 0.2 released
+				-----BEGIN PGP SIGNATURE-----
+				Version: GnuPG v1.4.12 (Darwin)
+
+				iQEcBAABAgAGBQJSGpMhAAoJEPUxHyDAhBpT4QQIAKeHfR3bo...
+				-----END PGP SIGNATURE-----
+
+				commit fec145accd63cdc9ed95a2f557ea0658a2a6537f
+				Author: Michael Liao <askxuefeng@gmail.com>
+				Date:   Thu Aug 22 10:37:30 2013 +0800
+
+					branch test
+		二.操作标签
+			1.如果标签打错了，也可以删除：
+				$ git tag -d v0.1
+				Deleted tag 'v0.1' (was e078af9)
+			2.如果要推送某个标签到远程，使用命令git push origin <tagname>：
+				$ git push origin v1.0
+			3.或者，一次性推送全部尚未推送到远程的本地标签：
+				$ git push origin --tags
+			4.如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：然后，从远程删除。删除命令也是push，但是格式如下：
+				$ git tag -d v0.9
+				$ git push origin :refs/tags/v0.9
