@@ -1,43 +1,49 @@
-一.创建版本库--提交文件
-	1.创建一个空目录：mkdir GITSPACES 进入该目录cd GITSPACES 显示当前目录pwd 
-		通过git init命令把这个目录变成Git可以管理的仓库
-	2.用命令git add告诉Git，把文件添加到仓库
-		git add readme.txt
-	3.用命令git commit告诉Git，把文件提交到仓库
-		git commit -m "wrote a readme file"			//-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的
-	4.更改文件后,使用git status查看仓库当前状态
-二.文件发生变化的处理
-	1.运行git status命令查看当前版本信息,当文件发生变化会提示哪个文件有变化
-		git status 
-	2.运行git diff命令查看具体内容不同的地方
-		git diff GitNote.txt
-	3.当确认不同之处没问题之后继续使用add commit命令提交文件
-三.版本回退
-	1.使用git log查看版本记录
-		git log
-		也可使用git log --pretty=oneling查看精简版日志
-	2.使用git reset --hard HEAD^回退到上一版本,HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，
-	当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
-		git reset --hard HEAD^
-	3.回到上一版本之后在想回到最新的版本需要在命令行窗口没有关闭的前提下,在之前的记录中找到需要的版本的commit id
-		git reset --hard 3628164(版本号)
-	4.使用cat GitNote.txt可查看当前文档内容,不支持中文
-	5.当命令窗口被关闭后,可以使用git reflog查看每一次的命令id,就可以回到需要的版本
-		git reflog
-四.管理修改
-	1.实验操作
-		修改-->add-->修改-->commit,由此可知只有第一次修改的内容被添加到了暂存区
-	2.使用git diff HEAD -- GitNote.txt查看工作去和版本库的区别
-		git diff HEAD -- readme.txt
-	3.可以看出第二次修改的内容没有提交到存储区,需要再次add commit操作
-五.撤销修改
-	1.当更改的内容没有被添加到stage时,可以使用git checkout将工作区更改的内容回到stage区最新的内容,意味着工作区的修改被撤销
-		git checkout -- GitNote.txt
-	2.当更改的内容被add到暂存区,但是没有commit时,可以使用git reset HEAD GitNote.txt来撤销暂存区的修改
-		git reset HEAD GitNote.txt
-六.删除操作
-	1.文件删除可以直接在工作区中删除或者使用rm直接删除
-	2.删除后工作区和版本库中的内容不符
-		2.1可以使用git rm 文件并且git commit操作后文件从版本库中删除
-		2.2文件误删,版本库中让然存在,使用checkout操作恢复最新状态
+(一)文件基本管理	
+	一.创建版本库--提交文件
+		1.创建一个空目录：mkdir GITSPACES 进入该目录cd GITSPACES 显示当前目录pwd 
+			通过git init命令把这个目录变成Git可以管理的仓库
+		2.用命令git add告诉Git，把文件添加到仓库
+			git add readme.txt
+		3.用命令git commit告诉Git，把文件提交到仓库
+			git commit -m "wrote a readme file"			//-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的
+		4.更改文件后,使用git status查看仓库当前状态
+	二.文件发生变化的处理
+		1.运行git status命令查看当前版本信息,当文件发生变化会提示哪个文件有变化
+			git status 
+		2.运行git diff命令查看具体内容不同的地方
+			git diff GitNote.txt
+		3.当确认不同之处没问题之后继续使用add commit命令提交文件
+	三.版本回退
+		1.使用git log查看版本记录
+			git log
+			也可使用git log --pretty=oneling查看精简版日志
+		2.使用git reset --hard HEAD^回退到上一版本,HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，
+		当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+			git reset --hard HEAD^
+		3.回到上一版本之后在想回到最新的版本需要在命令行窗口没有关闭的前提下,在之前的记录中找到需要的版本的commit id
+			git reset --hard 3628164(版本号)
+		4.使用cat GitNote.txt可查看当前文档内容,不支持中文
+		5.当命令窗口被关闭后,可以使用git reflog查看每一次的命令id,就可以回到需要的版本
+			git reflog
+	四.管理修改
+		1.实验操作
+			修改-->add-->修改-->commit,由此可知只有第一次修改的内容被添加到了暂存区
+		2.使用git diff HEAD -- GitNote.txt查看工作去和版本库的区别
+			git diff HEAD -- readme.txt
+		3.可以看出第二次修改的内容没有提交到存储区,需要再次add commit操作
+	五.撤销修改
+		1.当更改的内容没有被添加到stage时,可以使用git checkout将工作区更改的内容回到stage区最新的内容,意味着工作区的修改被撤销
 			git checkout -- GitNote.txt
+		2.当更改的内容被add到暂存区,但是没有commit时,可以使用git reset HEAD GitNote.txt来撤销暂存区的修改
+			git reset HEAD GitNote.txt
+	六.删除操作
+		1.文件删除可以直接在工作区中删除或者使用rm直接删除
+		2.删除后工作区和版本库中的内容不符
+			2.1可以使用git rm 文件并且git commit操作后文件从版本库中删除
+			2.2文件误删,版本库中让然存在,使用checkout操作恢复最新状态
+				git checkout -- GitNote.txt
+(二).远程仓库
+	一.init Operator
+		1.创建SSH key
+			ssh-keygen -t rsa -C "youremail@example.com"
+		2.登陆GitHub，打开“Account settings”，“SSH Keys”页面,点击Add SSH Key,将生成的id_rsa.pub添加
