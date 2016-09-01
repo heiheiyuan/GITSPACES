@@ -30,3 +30,8 @@
 	2.使用git diff HEAD -- GitNote.txt查看工作去和版本库的区别
 		git diff HEAD -- readme.txt
 	3.可以看出第二次修改的内容没有提交到存储区,需要再次add commit操作
+五.撤销修改
+	1.当更改的内容没有被添加到stage时,可以使用git checkout将工作区更改的内容回到stage区最新的内容,意味着工作区的修改被撤销
+		git checkout -- GitNote.txt
+	2.当更改的内容被add到暂存区,但是没有commit时,可以使用git reset HEAD GitNote.txt来撤销暂存区的修改
+		git reset HEAD GitNote.txt
