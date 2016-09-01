@@ -21,3 +21,6 @@
 		git reset --hard HEAD^
 	3.回到上一版本之后在想回到最新的版本需要在命令行窗口没有关闭的前提下,在之前的记录中找到需要的版本的commit id
 		git reset --hard 3628164(版本号)
+	4.使用cat GitNote.txt可查看当前文档内容,不支持中文
+	5.当命令窗口被关闭后,可以使用git reflog查看每一次的命令id,就可以回到需要的版本
+		git reflog
