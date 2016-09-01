@@ -160,3 +160,62 @@
 		8.再用git stash list查看就没有任何stash内容了
 		9.多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
 			$ git stash apply stash@{0}
+	五.Feature分支
+		1.开发新的功能最好新建一个新的feature分支,完成后合并,删除
+		2.当功能开发完成后,准备提交时,得知该功能取消,需要删除该分支
+			git branch -d feature-vulcan
+		3.销毁失败。Git友情提醒，feature-vulcan分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用命令
+			git branch -D feature-vulcan
+		4.使用git branch -D feature-vulcan强行删除
+	六.多人协作
+		1.当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
+		要查看远程库的信息，用git remote,也可使用git remote -v显示更详细的信息
+		2.多人协作时，大家都会往master和dev分支上推送各自的修改
+			2.1模拟一个你的小伙伴，可以在另一台电脑（注意要把SSH Key添加到GitHub）或者同一台电脑的另一个目录下克隆
+				git clone git@github.com:heiheiyuan/GITSPACES.git
+			2.2当你的小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的master分支。不信可以用git branch命令看看
+				$ git branch
+				* master
+			2.3小伙伴要在dev分支上开发，就必须创建远程origin的dev分支到本地，于是他用这个命令创建本地dev分支:
+				git checkout -b dev origin/dev
+			2.4现在，他就可以在dev上继续修改，然后，时不时地把dev分支push到远程：
+				$ git commit -m "add /usr/bin/env"
+				$ git push origin dev
+			2.5你的小伙伴已经向origin/dev分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送：
+				$ git add hello.py 
+				$ git commit -m "add coding: utf-8"
+				$ git push origin dev
+				推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，
+				Git已经提示我们，先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送：
+					$ git pull
+					remote: Counting objects: 5, done.
+					remote: Compressing objects: 100% (2/2), done.
+					remote: Total 3 (delta 0), reused 3 (delta 0)
+					Unpacking objects: 100% (3/3), done.
+					From github.com:michaelliao/learngit
+					   fc38031..291bea8  dev        -> origin/dev
+					There is no tracking information for the current branch.
+					Please specify which branch you want to merge with.
+					See git-pull(1) for details
+
+						git pull <remote> <branch>
+
+					If you wish to set tracking information for this branch you can do so with:
+
+						git branch --set-upstream dev origin/<branch>
+					git pull也失败了，原因是没有指定本地dev分支与远程origin/dev分支的链接，根据提示，设置dev和origin/dev的链接：
+						$ git branch --set-upstream dev origin/dev
+						Branch dev set up to track remote branch dev from origin.
+					紧接着才可以pull
+						$ git pull
+						Auto-merging hello.py
+						CONFLICT (content): Merge conflict in hello.py
+						Automatic merge failed; fix conflicts and then commit the result.
+					pull成功后合并会有冲突,手动解决冲突后可以提交代码
+		多人协作的工作模式:
+			首先，可以试图用git push origin branch-name推送自己的修改；
+			如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+			如果合并有冲突，则解决冲突，并在本地提交；
+			没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+			如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令
+				git branch --set-upstream branch-name origin/branch-name。
