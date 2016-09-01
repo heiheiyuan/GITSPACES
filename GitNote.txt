@@ -80,3 +80,8 @@
 			git branch -d dev
 		6.查看分支,发现只有一个master
 			git branch
+	二.解决冲突
+		1.准备新的分支
+			git checkout -b feature1
+		2.文件发生改动
+		3.在feature1上提交
