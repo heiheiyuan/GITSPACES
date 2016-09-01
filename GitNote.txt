@@ -47,3 +47,5 @@
 		1.创建SSH key
 			ssh-keygen -t rsa -C "youremail@example.com"
 		2.登陆GitHub，打开“Account settings”，“SSH Keys”页面,点击Add SSH Key,将生成的id_rsa.pub添加
+	二.添加远程仓库
+		
