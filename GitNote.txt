@@ -63,3 +63,8 @@
 		由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
 		还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令:git push origin master
 		如果第一次执行git remote add origin操作出现偏差时需要重新添加一次,可以执行git remote remove origin(远程仓库的name),然后重新添加即可
+	三.从远程库克隆
+		1.创建一个新的远程库,gitSkills
+		2.git clone git@github.com:heiheiyuan/gitSkills.git从远程仓库clone到本地
+(三).分支管理
+	一.
