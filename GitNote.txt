@@ -89,3 +89,6 @@
 			git checkout master
 		5.文件发生变化,在master分支上提交
 		6.目前两个分支各自有新的提交
+		7.此时进行合并会有冲突发生
+			git merge feature1
+		8.Git会说明GitNote.txt文件存在冲突，必须手动解决冲突后再提交,git status也可以告诉我们冲突的文件,我们可以直接查看GitNote.txt的内容
