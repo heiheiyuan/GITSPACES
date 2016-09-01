@@ -1,0 +1,6 @@
+一.创建版本库--提交文件
+	1.用命令git add告诉Git，把文件添加到仓库
+	git add readme.txt
+	2.用命令git commit告诉Git，把文件提交到仓库
+	git commit -m "wrote a readme file"			//-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的
+	
