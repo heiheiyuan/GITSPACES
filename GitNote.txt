@@ -35,3 +35,9 @@
 		git checkout -- GitNote.txt
 	2.当更改的内容被add到暂存区,但是没有commit时,可以使用git reset HEAD GitNote.txt来撤销暂存区的修改
 		git reset HEAD GitNote.txt
+六.删除操作
+	1.文件删除可以直接在工作区中删除或者使用rm直接删除
+	2.删除后工作区和版本库中的内容不符
+		2.1可以使用git rm 文件并且git commit操作后文件从版本库中删除
+		2.2文件误删,版本库中让然存在,使用checkout操作恢复最新状态
+			git checkout -- GitNote.txt
