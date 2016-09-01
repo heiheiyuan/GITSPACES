@@ -1,8 +1,14 @@
 一.创建版本库--提交文件
-	0.创建一个空目录：mkdir GITSPACES 进入该目录cd GITSPACES 显示当前目录pwd 
+	1.创建一个空目录：mkdir GITSPACES 进入该目录cd GITSPACES 显示当前目录pwd 
 		通过git init命令把这个目录变成Git可以管理的仓库
-	1.用命令git add告诉Git，把文件添加到仓库
+	2.用命令git add告诉Git，把文件添加到仓库
 		git add readme.txt
-	2.用命令git commit告诉Git，把文件提交到仓库
+	3.用命令git commit告诉Git，把文件提交到仓库
 		git commit -m "wrote a readme file"			//-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的
-	3.更改文件后,使用git status查看仓库当前状态
+	4.更改文件后,使用git status查看仓库当前状态
+二.文件发生变化的处理
+	1.运行git status命令查看当前版本信息,当文件发生变化会提示哪个文件有变化
+		git status 
+	2.运行git diff命令查看具体内容不同的地方
+		git diff GitNote.txt
+	3.当确认不同之处没问题之后继续使用add commit命令提交文件
